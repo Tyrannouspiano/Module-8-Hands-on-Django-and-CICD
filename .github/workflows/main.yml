@@ -11,21 +11,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.14'
 
       - name: Install dependencies
-        run: |
-          python -m pip install django
+        run: python -m pip install -r csc325Mod8Project/requirements.txt
 
       - name: Run tests
-        run: |
-          cd csc325Mod8Project
-          python manage.py test
+        working-directory: csc325Mod8Project
+        env:
+          DJANGO_DEBUG: "true"
+        run: python manage.py test
 
       - name: Deploy
         run: |
