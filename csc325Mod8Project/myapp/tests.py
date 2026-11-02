@@ -11,6 +11,10 @@ class PageViewTests(TestCase):
             response,
             "<h1>Hello, World! This is the home page of my Django application.</h1>",
         )
+        self.assertContains(
+        response,
+        "<p>Here is my small change for step 3</p>",
+    )
 
     def test_about_page(self):
         response = self.client.get(reverse("about"))
